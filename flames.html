@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flames Game</title>
+  <style>
+    body {
+      background-image: url(https://th.bing.com/th/id/R.2e7ffdfebe3472f26f9ec20cdbff0e55?rik=wjO53EuaEOQHLQ&riu=http%3a%2f%2fyesofcorsa.com%2fwp-content%2fuploads%2f2016%2f12%2f4K-Fire-Wallpaper-High-Resolution.jpg&ehk=kg485M%2b6GXtkVrnRNnMWZPNlWs5AgyIZ6IKhPtvwmUY%3d&risl=&pid=ImgRaw&r=0);
+      
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>The Best Flames Game</h1>
+    <div class="form-group">
+      <label for="your-name">Your Name</label>
+      <input type="text" id="your-name" placeholder="Enter your name">
+    </div>
+    <div class="form-group">
+      <label for="partner-name">Your Partner's Name</label>
+      <input type="text" id="partner-name" placeholder="Enter your partner's name">
+    </div>
+    <button onclick="calculateFlames()">Calculate</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateFlames() {
+      var yourName = document.getElementById('your-name').value.trim().toLowerCase();
+      var partnerName = document.getElementById('partner-name').value.trim().toLowerCase();
+
+      // Remove spaces and common letters from the names
+      var name1 = yourName.replace(/\s+/g, '');
+      var name2 = partnerName.replace(/\s+/g, '');
+
+      var flamesCount = name1.length + name2.length;
+      var flamesResult = '';
+
+      // Calculate Flames result
+      if (flamesCount > 0) {
+        var flamesSequence = 'flames';
+        var index = 0;
+
+        while (flamesSequence.length > 1) {
+          var charIndex = (index + flamesCount - 1) % flamesSequence.length;
+          flamesSequence = flamesSequence.substring(0, charIndex) + flamesSequence.substring(charIndex + 1);
+          index = charIndex % flamesSequence.length;
+        }
+
+        switch (flamesSequence) {
+          case 'f':
+            flamesResult = 'Friends';
+            break;
+          case 'l':
+            flamesResult = 'Lovers';
+            break;
+          case 'a':
+            flamesResult = 'Affectionate';
+            break;
+          case 'm':
+            flamesResult = 'Marriage';
+            break;
+          case 'e':
+            flamesResult = 'Enemies';
+            break;
+          case 's':
+            flamesResult = 'Siblings';
+            break;
+        }
+      }
+
+      // Display the result
+     var resultContainer = document.getElementById('result');
+      resultContainer.innerHTML = 'Result: ' + flamesResult;
+    }
+  </script>
+</body>
+</html>
